@@ -1,0 +1,15 @@
+BitMEX Exchange API specification
+=================================
+
+Public API:
+
+Documentation
+-------------
+
+Overview: https://www.bitmex.com/app/apiOverview
+HTTP (REST) API: https://www.bitmex.com/app/restAPI
+HTTP API Explorer: https://www.bitmex.com/api/explorer
+WebSocket API: https://www.bitmex.com/app/wsAPI
+
+API Keys: https://www.bitmex.com/app/apiKeysUsage
+Changelog: https://www.bitmex.com/app/apiChangelog

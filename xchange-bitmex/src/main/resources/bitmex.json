@@ -1,0 +1,29 @@
+{
+  "currency_pairs": {
+    "XBTUSD": {
+      "price_scale": 2
+    },
+    "XBTU16": {
+      "price_scale": 2
+    },
+    "XBJ24H": {
+      "price_scale": 0
+    },
+    "ETHXBT": {
+      "price_scale": 5
+    },
+    "LTCXBT": {
+      "price_scale": 5
+    },
+    "LSKXBT": {
+      "price_scale": 6
+    },
+    "FCTXBT": {
+      "price_scale": 6
+    },
+    "A50N16": {
+      "price_scale": 1
+    }
+  },
+  "currencies": {}
+}

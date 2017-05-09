@@ -1,0 +1,58 @@
+{
+    "id": 2,
+    "ownerId": null,
+    "firstname": "Example",
+    "lastname": "User",
+    "username": "Example_User",
+    "email": "user@example.com",
+    "phone": "+1234567890",
+    "created": "2016-05-18T14:32:17.618Z",
+    "lastUpdated": "2016-05-18T14:32:17.618Z",
+    "preferences": {
+        "announcementsLastSeen": "2016-07-01T15:19:06.907Z",
+        "colorTheme": "light",
+        "currency": "XBT",
+        "debug": false,
+        "disableEmails": [
+            "login",
+            "withdrawalCompleted",
+            "depositPending"
+        ],
+        "hideConfirmDialogs": [
+            "confirmMarket",
+            "confirmLimit"
+        ],
+        "hideConnectionModal": false,
+        "hideFromLeaderboard": false,
+        "hideNameFromLeaderboard": false,
+        "hideNotifications": [],
+        "hidePhoneConfirm": true,
+        "locale": "en-UPPER",
+        "msgsSeen": [
+            "tryCustomUI",
+            "withdrawalPending",
+            "withdrawalConfirmed"
+        ],
+        "orderBookBinning": 0,
+        "orderBookType": "singleColumn",
+        "orderControlsPlusMinus": false,
+        "sounds": [
+            "orderFilled",
+            "orderCanceled",
+            "chatMention",
+            "orderSubmitted"
+        ],
+        "strictIPCheck": false,
+        "strictTimeout": true,
+        "tickerGroup": "All",
+        "tickerPinned": false,
+        "tradeLayout": "advanced",
+        "showInLeaderboard": true,
+        "showNameInLeaderboard": false
+    },
+    "TFAEnabled": null,
+    "affiliateID": "04IlRQ",
+    "pgpPubKey": "",
+    "country": "US",
+    "roles": []
+}
