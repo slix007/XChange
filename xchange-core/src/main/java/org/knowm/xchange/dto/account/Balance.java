@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * This class is immutable.
  * </p>
  */
-public final class Balance implements Comparable<Balance> {
+public class Balance implements Comparable<Balance> {
 
   private static final Logger log = LoggerFactory.getLogger(Balance.class);
 
