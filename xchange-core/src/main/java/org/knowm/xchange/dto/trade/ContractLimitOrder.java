@@ -18,13 +18,13 @@ public class ContractLimitOrder extends LimitOrder {
         super(type, tradableAmount, currencyPair, id, timestamp, limitPrice, averagePrice, cumulativeAmount, status);
     }
 
-    private BigDecimal contractPrice;
+    private BigDecimal amountInBaseCurrency;
 
-    public BigDecimal getContractPrice() {
-        return contractPrice;
+    public BigDecimal getAmountInBaseCurrency() {
+        return amountInBaseCurrency;
     }
 
-    public void setContractPrice(BigDecimal contractPrice) {
-        this.contractPrice = contractPrice;
+    public void setAmountInBaseCurrency(BigDecimal amountInBaseCurrency) {
+        this.amountInBaseCurrency = amountInBaseCurrency;
     }
 }
