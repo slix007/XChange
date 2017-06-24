@@ -140,4 +140,23 @@ public class OkCoinPosition {
     return sellPriceAvg;
   }
 
+    @Override
+    public String toString() {
+        return "OkCoinPosition{" +
+                "contractId=" + contractId +
+                ", status=" + status +
+                ", symbol='" + symbol + '\'' +
+                ", type='" + type + '\'' +
+                ", rate=" + rate +
+                ", createDate=" + createDate +
+                ", buyAmount=" + buyAmount +
+                ", buyAmountAvailable=" + buyAmountAvailable +
+                ", buyProfitReal=" + buyProfitReal +
+                ", buyPriceAvg=" + buyPriceAvg +
+                ", sellAmount=" + sellAmount +
+                ", sellAmountAvailable=" + sellAmountAvailable +
+                ", sellProfitReal=" + sellProfitReal +
+                ", sellPriceAvg=" + sellPriceAvg +
+                '}';
+    }
 }
