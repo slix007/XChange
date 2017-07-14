@@ -105,6 +105,12 @@ public interface OkCoin {
 
   @POST
   @Path("future_order_info.do")
+  OkCoinFuturesOrderResult getFuturesOrderById(@FormParam("api_key") String api_key, @FormParam("order_id") long orderId,
+      @FormParam("symbol") String symbol, @FormParam("contract_type") String contract, @FormParam("sign") ParamsDigest sign)
+      throws IOException;
+
+  @POST
+  @Path("future_order_info.do")
   OkCoinFuturesOrderResult getFuturesOrder(@FormParam("api_key") String api_key, @FormParam("order_id") long orderId,
       @FormParam("symbol") String symbol, @FormParam("status") String status, @FormParam("current_page") String currentPage,
       @FormParam("page_length") String pageLength, @FormParam("contract_type") String contract, @FormParam("sign") ParamsDigest sign)

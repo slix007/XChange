@@ -1,8 +1,5 @@
 package org.knowm.xchange.okcoin.service;
 
-import java.io.IOException;
-import java.util.*;
-
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order;
@@ -28,6 +25,15 @@ import org.knowm.xchange.service.trade.params.TradeHistoryParams;
 import org.knowm.xchange.service.trade.params.orders.OpenOrdersParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class OkCoinFuturesTradeService extends OkCoinTradeServiceRaw implements TradeService {
 
@@ -153,6 +159,19 @@ public class OkCoinFuturesTradeService extends OkCoinTradeServiceRaw implements 
     }
     return ret;
   }
+
+    public OkCoinTradeResult cancelOrderWithResult(String orderId, CurrencyPair symbol, FuturesContract futuresContract) throws IOException {
+        OkCoinTradeResult cancelResult;
+        long id = Long.valueOf(orderId);
+
+        try {
+            cancelResult = futuresCancelOrder(id, OkCoinAdapters.adaptSymbol(symbol), futuresContract);
+        } catch (Exception e) {
+            cancelResult = new OkCoinTradeResult(false, -1, id);
+            cancelResult.setDetails(e.getMessage());
+        }
+        return cancelResult;
+    }
 
   /**
    * Parameters: see {@link OkCoinFuturesTradeService.OkCoinFuturesTradeHistoryParams}
