@@ -10,6 +10,8 @@ public class Position {
     private BigDecimal positionShort;
     private BigDecimal leverage;
     private BigDecimal liquidationPrice;
+    private BigDecimal priceAvgLong;
+    private BigDecimal priceAvgShort;
     private String raw;
 
     public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, String raw) {
@@ -17,6 +19,16 @@ public class Position {
         this.positionShort = positionShort;
         this.leverage = leverage;
         this.liquidationPrice = liquidationPrice;
+        this.raw = raw;
+    }
+
+    public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal priceAvgLong, BigDecimal priceAvgShort, String raw) {
+        this.positionLong = positionLong;
+        this.positionShort = positionShort;
+        this.leverage = leverage;
+        this.liquidationPrice = liquidationPrice;
+        this.priceAvgLong = priceAvgLong;
+        this.priceAvgShort = priceAvgShort;
         this.raw = raw;
     }
 
@@ -52,6 +64,22 @@ public class Position {
         this.liquidationPrice = liquidationPrice;
     }
 
+    public BigDecimal getPriceAvgLong() {
+        return priceAvgLong;
+    }
+
+    public void setPriceAvgLong(BigDecimal priceAvgLong) {
+        this.priceAvgLong = priceAvgLong;
+    }
+
+    public BigDecimal getPriceAvgShort() {
+        return priceAvgShort;
+    }
+
+    public void setPriceAvgShort(BigDecimal priceAvgShort) {
+        this.priceAvgShort = priceAvgShort;
+    }
+
     public String getRaw() {
         return raw;
     }
@@ -67,6 +95,8 @@ public class Position {
                 ", positionShort=" + positionShort +
                 ", leverage=" + leverage +
                 ", liquidationPrice=" + liquidationPrice +
+                ", priceAvgLong=" + priceAvgLong +
+                ", priceAvgShort=" + priceAvgShort +
                 ", raw='" + raw + '\'' +
                 '}';
     }
