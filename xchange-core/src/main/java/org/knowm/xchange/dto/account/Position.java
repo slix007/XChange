@@ -12,6 +12,7 @@ public class Position {
     private BigDecimal liquidationPrice;
     private BigDecimal priceAvgLong;
     private BigDecimal priceAvgShort;
+    private BigDecimal markValue;
     private String raw;
 
     public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, String raw) {
@@ -19,6 +20,15 @@ public class Position {
         this.positionShort = positionShort;
         this.leverage = leverage;
         this.liquidationPrice = liquidationPrice;
+        this.raw = raw;
+    }
+
+    public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal markValue, String raw) {
+        this.positionLong = positionLong;
+        this.positionShort = positionShort;
+        this.leverage = leverage;
+        this.liquidationPrice = liquidationPrice;
+        this.markValue = markValue;
         this.raw = raw;
     }
 
@@ -80,6 +90,14 @@ public class Position {
         this.priceAvgShort = priceAvgShort;
     }
 
+    public BigDecimal getMarkValue() {
+        return markValue;
+    }
+
+    public void setMarkValue(BigDecimal markValue) {
+        this.markValue = markValue;
+    }
+
     public String getRaw() {
         return raw;
     }
@@ -97,6 +115,7 @@ public class Position {
                 ", liquidationPrice=" + liquidationPrice +
                 ", priceAvgLong=" + priceAvgLong +
                 ", priceAvgShort=" + priceAvgShort +
+                ", markValue=" + markValue +
                 ", raw='" + raw + '\'' +
                 '}';
     }
