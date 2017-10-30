@@ -37,7 +37,9 @@ public class OKCoinBaseTradeService extends OkCoinBaseService {
     if (t.isResult()) {
       return t;
     } else {
-      throw new ExchangeException(OkCoinUtils.getErrorMessage(t.getErrorCode()));
+        throw new ExchangeException(String.format("Code: %s, translation: %s",
+                t.getErrorCode(),
+                OkCoinUtils.getErrorMessage(t.getErrorCode())));
     }
   }
 

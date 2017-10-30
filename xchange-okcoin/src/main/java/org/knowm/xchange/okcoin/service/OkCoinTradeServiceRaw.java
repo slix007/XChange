@@ -51,9 +51,16 @@ public class OkCoinTradeServiceRaw extends OKCoinBaseTradeService {
   public OkCoinTradeResult futuresTrade(String symbol, String type, String price, String amount, FuturesContract contract, int matchPrice,
       int leverRate) throws IOException {
 
-    OkCoinTradeResult tradeResult = okCoin.futuresTrade(apikey, symbol, contract.getName(), type, price, amount, matchPrice, leverRate,
-        signatureCreator);
-    return returnOrThrow(tradeResult);
+    OkCoinTradeResult tradeResult;
+      if (matchPrice == 0) {
+          tradeResult = okCoin.futuresTrade(apikey, symbol, contract.getName(), type, price, amount, "0", leverRate,
+                  signatureCreator);
+      } else {
+          tradeResult = okCoin.futuresMarketTrade(apikey, symbol, contract.getName(), type, amount, "1", leverRate,
+                  signatureCreator);
+      }
+
+      return returnOrThrow(tradeResult);
   }
 
   public OkCoinTradeResult futuresCancelOrder(long orderId, String symbol, FuturesContract contract) throws IOException {

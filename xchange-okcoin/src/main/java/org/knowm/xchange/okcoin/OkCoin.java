@@ -85,8 +85,15 @@ public interface OkCoin {
   @Path("future_trade.do")
   OkCoinTradeResult futuresTrade(@FormParam("api_key") String api_key, @FormParam("symbol") String symbol,
       @FormParam("contract_type") String contract, @FormParam("type") String type, @FormParam("price") String price,
-      @FormParam("amount") String amount, @FormParam("match_price") int matchPrice, @FormParam("lever_rate") int leverRate,
+      @FormParam("amount") String amount, @FormParam("match_price") String matchPrice, @FormParam("lever_rate") int leverRate,
       @FormParam("sign") ParamsDigest sign) throws IOException;
+
+    @POST
+    @Path("future_trade.do")
+    OkCoinTradeResult futuresMarketTrade(@FormParam("api_key") String api_key, @FormParam("symbol") String symbol,
+                                   @FormParam("contract_type") String contract, @FormParam("type") String type,
+                                   @FormParam("amount") String amount, @FormParam("match_price") String matchPrice, @FormParam("lever_rate") int leverRate,
+                                   @FormParam("sign") ParamsDigest sign) throws IOException;
 
   @POST
   @Path("cancel_order.do")
