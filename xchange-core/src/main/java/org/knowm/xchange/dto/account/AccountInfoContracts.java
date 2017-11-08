@@ -8,7 +8,10 @@ import java.math.BigDecimal;
 public class AccountInfoContracts {
     private BigDecimal wallet;
     private BigDecimal available;
-    private BigDecimal equity;
+    private BigDecimal eMark;
+    private BigDecimal eLast;
+    private BigDecimal eBest;
+    private BigDecimal eAvg;
     private BigDecimal margin;
     private BigDecimal upl;
     private BigDecimal rpl;
@@ -17,18 +20,28 @@ public class AccountInfoContracts {
     public AccountInfoContracts() {
     }
 
-    public AccountInfoContracts(BigDecimal wallet, BigDecimal available, BigDecimal equity, BigDecimal margin, BigDecimal upl) {
+    public AccountInfoContracts(BigDecimal wallet, BigDecimal available,
+                                BigDecimal eMark, BigDecimal eLast, BigDecimal eBest, BigDecimal eAvg,
+                                BigDecimal margin, BigDecimal upl) {
         this.wallet = wallet;
         this.available = available;
-        this.equity = equity;
+        this.eMark = eMark;
+        this.eLast = eLast;
+        this.eBest = eBest;
+        this.eAvg = eAvg;
         this.margin = margin;
         this.upl = upl;
     }
 
-    public AccountInfoContracts(BigDecimal wallet, BigDecimal available, BigDecimal equity, BigDecimal margin, BigDecimal upl, BigDecimal rpl, BigDecimal riskRate) {
+    public AccountInfoContracts(BigDecimal wallet, BigDecimal available,
+                                BigDecimal eMark, BigDecimal eLast, BigDecimal eBest,  BigDecimal eAvg,
+                                BigDecimal margin, BigDecimal upl, BigDecimal rpl, BigDecimal riskRate) {
         this.wallet = wallet;
         this.available = available;
-        this.equity = equity;
+        this.eMark = eMark;
+        this.eLast = eLast;
+        this.eBest = eBest;
+        this.eAvg = eAvg;
         this.margin = margin;
         this.upl = upl;
         this.rpl = rpl;
@@ -43,8 +56,20 @@ public class AccountInfoContracts {
         return available;
     }
 
-    public BigDecimal getEquity() {
-        return equity;
+    public BigDecimal geteMark() {
+        return eMark;
+    }
+
+    public BigDecimal geteLast() {
+        return eLast;
+    }
+
+    public BigDecimal geteBest() {
+        return eBest;
+    }
+
+    public BigDecimal geteAvg() {
+        return eAvg;
     }
 
     public BigDecimal getMargin() {
@@ -68,7 +93,10 @@ public class AccountInfoContracts {
         return "AccountInfoContracts{" +
                 "wallet=" + wallet +
                 ", available=" + available +
-                ", equity=" + equity +
+                ", eMark=" + eMark +
+                ", eLast=" + eLast +
+                ", eBest=" + eBest +
+                ", eAvg=" + eAvg +
                 ", margin=" + margin +
                 ", upl=" + upl +
                 ", rpl=" + rpl +
