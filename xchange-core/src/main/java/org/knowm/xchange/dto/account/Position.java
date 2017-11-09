@@ -32,11 +32,13 @@ public class Position {
         this.raw = raw;
     }
 
-    public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal priceAvgLong, BigDecimal priceAvgShort, String raw) {
+    public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal markValue,
+                    BigDecimal priceAvgLong, BigDecimal priceAvgShort, String raw) {
         this.positionLong = positionLong;
         this.positionShort = positionShort;
         this.leverage = leverage;
         this.liquidationPrice = liquidationPrice;
+        this.markValue = markValue;
         this.priceAvgLong = priceAvgLong;
         this.priceAvgShort = priceAvgShort;
         this.raw = raw;
