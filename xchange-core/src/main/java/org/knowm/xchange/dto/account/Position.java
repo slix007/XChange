@@ -118,7 +118,20 @@ public class Position {
                 ", priceAvgLong=" + priceAvgLong +
                 ", priceAvgShort=" + priceAvgShort +
                 ", markValue=" + markValue +
+                '}';
+    }
+
+    public String toFullString() {
+        return "Position{" +
+                "positionLong=" + positionLong +
+                ", positionShort=" + positionShort +
+                ", leverage=" + leverage +
+                ", liquidationPrice=" + liquidationPrice +
+                ", priceAvgLong=" + priceAvgLong +
+                ", priceAvgShort=" + priceAvgShort +
+                ", markValue=" + markValue +
                 ", raw='" + raw + '\'' +
                 '}';
     }
+
 }
