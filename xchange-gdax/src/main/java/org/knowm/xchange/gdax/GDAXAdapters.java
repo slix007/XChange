@@ -185,8 +185,8 @@ public class GDAXAdapters {
     Map<CurrencyPair, CurrencyPairMetaData> currencyPairs = new HashMap<>();
     Map<Currency, CurrencyMetaData> currencies = new HashMap<>();
     for (GDAXProduct product : products) {
-      BigDecimal minSize = product.getBaseMinSize().setScale(product.getQuoteIncrement().scale(), BigDecimal.ROUND_UNNECESSARY);
-      BigDecimal maxSize = product.getBaseMaxSize().setScale(product.getQuoteIncrement().scale(), BigDecimal.ROUND_UNNECESSARY);
+      BigDecimal minSize = product.getBaseMinSize().setScale(product.getQuoteIncrement().scale(), BigDecimal.ROUND_HALF_UP);
+      BigDecimal maxSize = product.getBaseMaxSize().setScale(product.getQuoteIncrement().scale(), BigDecimal.ROUND_HALF_UP);
       CurrencyPairMetaData cpmd = new CurrencyPairMetaData(null, minSize, maxSize, 8); // TODO 8 is a wild guess
       CurrencyPair pair = adaptCurrencyPair(product);
       currencyPairs.put(pair, cpmd);
