@@ -7,6 +7,7 @@ import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.okcoin.FuturesContract;
 import org.knowm.xchange.okcoin.OkCoin;
 import org.knowm.xchange.okcoin.OkCoinAdapters;
+import org.knowm.xchange.okcoin.v3.OkCoinV3;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinDepth;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTickerResponse;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTrade;
@@ -16,6 +17,7 @@ import si.mazi.rescu.RestProxyFactory;
 public class OkCoinMarketDataServiceRaw extends OkCoinBaseService {
 
   private final OkCoin okCoin;
+  private final OkCoinV3 okCoinV3;
 
   /**
    * Constructor
@@ -27,16 +29,21 @@ public class OkCoinMarketDataServiceRaw extends OkCoinBaseService {
     super(exchange);
 
     okCoin = RestProxyFactory.createProxy(OkCoin.class, exchange.getExchangeSpecification().getSslUri());
+    okCoinV3 = RestProxyFactory.createProxy(OkCoinV3.class, exchange.getExchangeSpecification().getSslUri());
   }
 
   public OkCoinTickerResponse getTicker(CurrencyPair currencyPair) throws IOException {
 
-    return okCoin.getTicker("1", OkCoinAdapters.adaptSymbol(currencyPair));
+    String symbol = OkCoinAdapters.adaptSymbol(currencyPair);
+    OkCoinTickerResponse v1 = okCoin.getTicker("1", symbol);
+    OkCoinTickerResponse v3 = okCoinV3.getTicker("1", symbol);
+
+    return v3;
   }
 
   public OkCoinTickerResponse getFuturesTicker(CurrencyPair currencyPair, FuturesContract prompt) throws IOException {
 
-    return okCoin.getFuturesTicker(OkCoinAdapters.adaptSymbol(currencyPair), prompt.getName());
+    return okCoinV3.getFuturesTicker(OkCoinAdapters.adaptSymbol(currencyPair), prompt.getName());
   }
 
   public OkCoinDepth getDepth(CurrencyPair currencyPair) throws IOException {

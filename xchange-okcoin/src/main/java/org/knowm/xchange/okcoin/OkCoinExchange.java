@@ -8,7 +8,6 @@ import org.knowm.xchange.okcoin.service.OkCoinFuturesMarketDataService;
 import org.knowm.xchange.okcoin.service.OkCoinFuturesTradeService;
 import org.knowm.xchange.okcoin.service.OkCoinMarketDataService;
 import org.knowm.xchange.okcoin.service.OkCoinTradeService;
-
 import si.mazi.rescu.SynchronizedValueFactory;
 
 public class OkCoinExchange extends BaseExchange {
@@ -32,7 +31,16 @@ public class OkCoinExchange extends BaseExchange {
     concludeHostParams(exchangeSpecification);
 
     if (exchangeSpecification.getExchangeSpecificParameters() != null
-        && exchangeSpecification.getExchangeSpecificParametersItem("Use_Futures").equals(true)) {
+            && exchangeSpecification.getExchangeSpecificParametersItem("Use_Futures").equals(true)) {
+      FuturesContract contract = futuresContractOfConfig(exchangeSpecification);
+
+      this.marketDataService = new OkCoinFuturesMarketDataService(this, contract);
+      if (exchangeSpecification.getApiKey() != null) {
+        this.accountService = new OkCoinFuturesAccountService(this);
+        this.tradeService = new OkCoinFuturesTradeService(this, contract, futuresLeverageOfConfig(exchangeSpecification));
+      }
+    } else if (exchangeSpecification.getExchangeSpecificParameters() != null
+            && exchangeSpecification.getExchangeSpecificParametersItem("Use_Futures_v3").equals(true)) {
       FuturesContract contract = futuresContractOfConfig(exchangeSpecification);
 
       this.marketDataService = new OkCoinFuturesMarketDataService(this, contract);
