@@ -1,7 +1,6 @@
 package org.knowm.xchange.okcoin;
 
 import java.io.IOException;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -10,19 +9,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
 import org.knowm.xchange.okcoin.dto.account.OKCoinWithdraw;
 import org.knowm.xchange.okcoin.dto.account.OkCoinFuturesUserInfoCross;
 import org.knowm.xchange.okcoin.dto.account.OkCoinUserInfo;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinDepth;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTickerResponse;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTrade;
+import org.knowm.xchange.okcoin.dto.marketdata.OkcoinForecastPrice;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinFuturesOrderResult;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinFuturesTradeHistoryResult;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinOrderResult;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinPositionResult;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinTradeResult;
-
 import si.mazi.rescu.ParamsDigest;
 
 @Path("/v1")
@@ -63,6 +61,11 @@ public interface OkCoin {
   @Path("future_trades.do")
   OkCoinTrade[] getFuturesTrades(@QueryParam("ok") String ok, @QueryParam("symbol") String symbol, @QueryParam("contract_type") String contract,
       @QueryParam("since") long since) throws IOException;
+
+  @GET
+  @Path("future_estimated_price.do")
+    // Request frequency 20 times/2s // symbol: btc_usd ltc_usd eth_usd etc_usd bch_usd
+  OkcoinForecastPrice getFuturesEstimatedDeliveryPrice(@QueryParam("symbol") String symbol) throws IOException;
 
   @POST
   @Path("userinfo.do")
