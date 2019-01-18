@@ -10,6 +10,7 @@ import org.knowm.xchange.okcoin.dto.marketdata.OkCoinDepth;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTickerResponse;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTrade;
 import org.knowm.xchange.okcoin.dto.marketdata.OkcoinForecastPrice;
+import org.knowm.xchange.okcoin.dto.marketdata.OkcoinMarkPrice;
 import si.mazi.rescu.RestProxyFactory;
 
 public class OkCoinMarketDataServiceRaw extends OkCoinBaseService {
@@ -67,4 +68,7 @@ public class OkCoinMarketDataServiceRaw extends OkCoinBaseService {
     return okCoin.getFuturesEstimatedDeliveryPrice(OkCoinAdapters.adaptSymbol(symbol));
   }
 
+  public OkcoinMarkPrice getFuturesMarkPrice(CurrencyPair symbol, FuturesContract prompt) throws IOException {
+    return okCoin.getFuturesMarkPrice(OkCoinAdapters.adaptSymbol(symbol), prompt.getName().toLowerCase());
+  }
 }

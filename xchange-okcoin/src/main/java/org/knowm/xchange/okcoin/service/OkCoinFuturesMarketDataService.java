@@ -9,6 +9,7 @@ import org.knowm.xchange.dto.marketdata.Trades;
 import org.knowm.xchange.okcoin.FuturesContract;
 import org.knowm.xchange.okcoin.OkCoinAdapters;
 import org.knowm.xchange.okcoin.dto.marketdata.OkcoinForecastPrice;
+import org.knowm.xchange.okcoin.dto.marketdata.OkcoinMarkPrice;
 import org.knowm.xchange.service.marketdata.MarketDataService;
 
 public class OkCoinFuturesMarketDataService extends OkCoinMarketDataServiceRaw implements MarketDataService {
@@ -56,6 +57,10 @@ public class OkCoinFuturesMarketDataService extends OkCoinMarketDataServiceRaw i
 
   public OkcoinForecastPrice getFuturesForecastPrice(CurrencyPair currencyPair) throws IOException {
     return getFuturesEstimatedDeliveryPrice(currencyPair);
+  }
+
+  public OkcoinMarkPrice getFuturesMarkPrice(CurrencyPair currencyPair) throws IOException {
+    return getFuturesMarkPrice(currencyPair, futuresContract);
   }
 
 }
