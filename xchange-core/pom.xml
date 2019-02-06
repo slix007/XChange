@@ -35,9 +35,14 @@
 		</dependency>
 
  		<dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.iharder</groupId>
+			<artifactId>base64</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>
