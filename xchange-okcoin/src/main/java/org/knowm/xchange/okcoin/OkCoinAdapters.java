@@ -1,6 +1,7 @@
 package org.knowm.xchange.okcoin;
 
 import static org.knowm.xchange.currency.Currency.BTC;
+import static org.knowm.xchange.currency.Currency.ETH;
 import static org.knowm.xchange.currency.Currency.LTC;
 import static org.knowm.xchange.currency.Currency.USD;
 
@@ -11,12 +12,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order.OrderStatus;
 import org.knowm.xchange.dto.Order.OrderType;
 import org.knowm.xchange.dto.account.AccountInfo;
+import org.knowm.xchange.dto.account.AccountInfoContracts;
 import org.knowm.xchange.dto.account.Balance;
 import org.knowm.xchange.dto.account.Wallet;
 import org.knowm.xchange.dto.marketdata.OrderBook;
@@ -133,15 +134,55 @@ public final class OkCoinAdapters {
     return new AccountInfo(new Wallet(wallet));
   }
 
+  @SuppressWarnings("Duplicates")
+  private static Balance adaptBalance(Currency currency, OkcoinFuturesFundsCross fundsCross) {
+    final BigDecimal equity = fundsCross.getAccountRights().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal margin = fundsCross.getKeepDeposits().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal upl = fundsCross.getProfitUnreal().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal wallet = equity.subtract(upl).setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal available = equity.subtract(margin).setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal rpl = fundsCross.getProfitReal().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal riskRate = fundsCross.getRiskRate().setScale(8, BigDecimal.ROUND_HALF_UP);
+    return new Balance(currency,
+            fundsCross.getAccountRights(),
+            available,
+            margin);
+  }
+
+  @SuppressWarnings("Duplicates")
+  public static AccountInfoContracts adaptAccountInfoContractsFutures(Currency currency, OkCoinFuturesUserInfoCross futureUserInfo) {
+    OkCoinFuturesInfoCross info = futureUserInfo.getInfo();
+    OkcoinFuturesFundsCross fundsCross;
+    if (currency == BTC) {
+      fundsCross = info.getBtcFunds();
+    } else if (currency == ETH) {
+      fundsCross = info.getEthFunds();
+    } else {
+      throw new IllegalArgumentException("Unsupported currency " + currency);
+    }
+    final BigDecimal equity = fundsCross.getAccountRights().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal margin = fundsCross.getKeepDeposits().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal upl = fundsCross.getProfitUnreal().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal wallet = equity.subtract(upl).setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal available = equity.subtract(margin).setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal rpl = fundsCross.getProfitReal().setScale(8, BigDecimal.ROUND_HALF_UP);
+    final BigDecimal riskRate = fundsCross.getRiskRate().setScale(8, BigDecimal.ROUND_HALF_UP);
+
+    return new AccountInfoContracts(wallet, available, null, equity, null, null, margin, upl, rpl, riskRate);
+
+  }
+
   public static AccountInfo adaptAccountInfoFutures(OkCoinFuturesUserInfoCross futureUserInfo) {
     OkCoinFuturesInfoCross info = futureUserInfo.getInfo();
     OkcoinFuturesFundsCross btcFunds = info.getBtcFunds();
     OkcoinFuturesFundsCross ltcFunds = info.getLtcFunds();
+    OkcoinFuturesFundsCross ethFunds = info.getEthFunds();
 
-    Balance btcBalance = new Balance(BTC, btcFunds.getAccountRights());
-    Balance ltcBalance = new Balance(LTC, ltcFunds.getAccountRights());
+    Balance btcBalance = adaptBalance(BTC, btcFunds);
+    Balance ltcBalance = adaptBalance(LTC, ltcFunds);
+    Balance ethBalance = adaptBalance(ETH, ethFunds);
 
-    return new AccountInfo(new Wallet(zeroUsdBalance, btcBalance, ltcBalance));
+    return new AccountInfo(new Wallet(zeroUsdBalance, btcBalance, ltcBalance, ethBalance));
   }
 
   public static OpenOrders adaptOpenOrders(List<OkCoinOrderResult> orderResults) {

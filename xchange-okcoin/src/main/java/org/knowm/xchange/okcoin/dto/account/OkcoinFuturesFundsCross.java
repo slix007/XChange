@@ -10,11 +10,11 @@ public class OkcoinFuturesFundsCross {
   private final BigDecimal keepDeposits;
   private final BigDecimal profitReal;
   private final BigDecimal profitUnreal;
-  private final int riskRate;
+  private final BigDecimal riskRate;
 
   public OkcoinFuturesFundsCross(@JsonProperty("account_rights") BigDecimal accountRights, @JsonProperty("keep_deposit") BigDecimal keepDeposits,
       @JsonProperty("profit_real") BigDecimal profitReal, @JsonProperty("profit_unreal") BigDecimal profitUnreal,
-      @JsonProperty("risk_rate") int riskRate) {
+      @JsonProperty("risk_rate") BigDecimal riskRate) {
 
     this.accountRights = accountRights;
     this.keepDeposits = keepDeposits;
@@ -44,7 +44,7 @@ public class OkcoinFuturesFundsCross {
     return profitUnreal;
   }
 
-  public int getRiskRate() {
+  public BigDecimal getRiskRate() {
 
     return riskRate;
   }

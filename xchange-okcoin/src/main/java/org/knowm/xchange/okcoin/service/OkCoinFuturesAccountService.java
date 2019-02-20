@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.Currency;
 import org.knowm.xchange.dto.account.AccountInfo;
+import org.knowm.xchange.dto.account.AccountInfoContracts;
 import org.knowm.xchange.exceptions.NotAvailableFromExchangeException;
 import org.knowm.xchange.okcoin.OkCoinAdapters;
 import org.knowm.xchange.service.account.AccountService;
@@ -26,6 +27,11 @@ public class OkCoinFuturesAccountService extends OkCoinAccountServiceRaw impleme
   public AccountInfo getAccountInfo() throws IOException {
 
     return OkCoinAdapters.adaptAccountInfoFutures(getFutureUserInfo());
+  }
+
+  public AccountInfoContracts getAccountInfoContracts(Currency currency) throws IOException {
+
+    return OkCoinAdapters.adaptAccountInfoContractsFutures(currency, getFutureUserInfo());
   }
 
   @Override
