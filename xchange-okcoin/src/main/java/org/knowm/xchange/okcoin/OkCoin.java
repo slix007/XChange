@@ -16,6 +16,7 @@ import org.knowm.xchange.okcoin.dto.marketdata.OkCoinDepth;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTickerResponse;
 import org.knowm.xchange.okcoin.dto.marketdata.OkCoinTrade;
 import org.knowm.xchange.okcoin.dto.marketdata.OkcoinForecastPrice;
+import org.knowm.xchange.okcoin.dto.marketdata.OkcoinIndexPrice;
 import org.knowm.xchange.okcoin.dto.marketdata.OkcoinMarkPrice;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinFuturesOrderResult;
 import org.knowm.xchange.okcoin.dto.trade.OkCoinFuturesTradeHistoryResult;
@@ -74,6 +75,13 @@ public interface OkCoin {
     // symbol：btc_usd ltc_usd eth_usd etc_usd bch_usd
     // contract_type：this_week next_week quarter
   OkcoinMarkPrice getFuturesMarkPrice(@QueryParam("symbol") String symbol, @QueryParam("contract_type") String contract) throws IOException;
+
+  @GET
+  @Path("future_index.do")
+    // Request frequency 20 times/2s
+    // symbol：btc_usd ltc_usd eth_usd etc_usd bch_usd
+    // contract_type：this_week next_week quarter
+  OkcoinIndexPrice getFuturesIndexPrice(@QueryParam("symbol") String symbol, @QueryParam("contract_type") String contract) throws IOException;
 
   @POST
   @Path("userinfo.do")
