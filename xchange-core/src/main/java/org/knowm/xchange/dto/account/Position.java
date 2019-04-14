@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 public class Position {
     private BigDecimal positionLong;
     private BigDecimal positionShort;
+    private BigDecimal longAvailToClose;
+    private BigDecimal shortAvailToClose;
     private BigDecimal leverage;
     private BigDecimal liquidationPrice;
     private BigDecimal priceAvgLong;
@@ -32,10 +34,27 @@ public class Position {
         this.raw = raw;
     }
 
-    public Position(BigDecimal positionLong, BigDecimal positionShort, BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal markValue,
+    public Position(BigDecimal positionLong, BigDecimal positionShort,
+            BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal markValue,
+            BigDecimal priceAvgLong, BigDecimal priceAvgShort, String raw) {
+        this.positionLong = positionLong;
+        this.positionShort = positionShort;
+        this.leverage = leverage;
+        this.liquidationPrice = liquidationPrice;
+        this.markValue = markValue;
+        this.priceAvgLong = priceAvgLong;
+        this.priceAvgShort = priceAvgShort;
+        this.raw = raw;
+    }
+
+    public Position(BigDecimal positionLong, BigDecimal positionShort,
+            BigDecimal longAvailToClose, BigDecimal shortAvailToClose,
+            BigDecimal leverage, BigDecimal liquidationPrice, BigDecimal markValue,
                     BigDecimal priceAvgLong, BigDecimal priceAvgShort, String raw) {
         this.positionLong = positionLong;
         this.positionShort = positionShort;
+        this.longAvailToClose = longAvailToClose;
+        this.shortAvailToClose = shortAvailToClose;
         this.leverage = leverage;
         this.liquidationPrice = liquidationPrice;
         this.markValue = markValue;
@@ -58,6 +77,22 @@ public class Position {
 
     public void setPositionShort(BigDecimal positionShort) {
         this.positionShort = positionShort;
+    }
+
+    public BigDecimal getLongAvailToClose() {
+        return longAvailToClose;
+    }
+
+    public void setLongAvailToClose(BigDecimal longAvailToClose) {
+        this.longAvailToClose = longAvailToClose;
+    }
+
+    public BigDecimal getShortAvailToClose() {
+        return shortAvailToClose;
+    }
+
+    public void setShortAvailToClose(BigDecimal shortAvailToClose) {
+        this.shortAvailToClose = shortAvailToClose;
     }
 
     public BigDecimal getLeverage() {
@@ -113,6 +148,8 @@ public class Position {
         return "Position{" +
                 "positionLong=" + positionLong +
                 ", positionShort=" + positionShort +
+                ", longAvailToClose=" + longAvailToClose +
+                ", shortAvailToClose=" + shortAvailToClose +
                 ", leverage=" + leverage +
                 ", liquidationPrice=" + liquidationPrice +
                 ", priceAvgLong=" + priceAvgLong +
@@ -125,6 +162,8 @@ public class Position {
         return "Position{" +
                 "positionLong=" + positionLong +
                 ", positionShort=" + positionShort +
+                ", longAvailToClose=" + longAvailToClose +
+                ", shortAvailToClose=" + shortAvailToClose +
                 ", leverage=" + leverage +
                 ", liquidationPrice=" + liquidationPrice +
                 ", priceAvgLong=" + priceAvgLong +
