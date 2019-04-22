@@ -1,5 +1,13 @@
 package org.knowm.xchange.okcoin.service;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import org.knowm.xchange.Exchange;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order;
@@ -25,15 +33,6 @@ import org.knowm.xchange.service.trade.params.TradeHistoryParams;
 import org.knowm.xchange.service.trade.params.orders.OpenOrdersParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class OkCoinFuturesTradeService extends OkCoinTradeServiceRaw implements TradeService {
 
@@ -172,6 +171,26 @@ public class OkCoinFuturesTradeService extends OkCoinTradeServiceRaw implements 
         }
         return cancelResult;
     }
+
+  public OkCoinTradeResult placeLimitOrderWithResult(LimitOrder limitOrder) throws IOException {
+    if (limitOrder.getType() == OrderType.BID || limitOrder.getType() == OrderType.ASK) {
+      return futuresTrade(OkCoinAdapters.adaptSymbol(limitOrder.getCurrencyPair()),
+              limitOrder.getType() == OrderType.BID ? "1" : "2",
+              limitOrder.getLimitPrice().toPlainString(), limitOrder.getTradableAmount().toPlainString(), futuresContract, 0, leverRate);
+    } else {
+      return liquidateLimitOrderWithResult(limitOrder);
+    }
+  }
+
+  /**
+   * Liquidate long or short contract using a limit order
+   */
+  public OkCoinTradeResult liquidateLimitOrderWithResult(LimitOrder limitOrder) throws IOException {
+    return futuresTrade(OkCoinAdapters.adaptSymbol(limitOrder.getCurrencyPair()),
+            limitOrder.getType() == OrderType.BID || limitOrder.getType() == OrderType.EXIT_BID ? "3" : "4", limitOrder.getLimitPrice().toPlainString(),
+            limitOrder.getTradableAmount().toPlainString(), futuresContract, 0, leverRate);
+  }
+
 
   /**
    * Parameters: see {@link OkCoinFuturesTradeService.OkCoinFuturesTradeHistoryParams}
