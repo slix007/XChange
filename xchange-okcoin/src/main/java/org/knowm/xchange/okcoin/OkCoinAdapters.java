@@ -278,7 +278,7 @@ public final class OkCoinAdapters {
   public static OrderType adaptOrderType(String type) {
 
     switch (type) {
-
+      // type: order type 1: open long, 2: open short, 3: close long, 4: close short
     case "buy":
       return OrderType.BID;
     case "buy_market":
@@ -292,9 +292,9 @@ public final class OkCoinAdapters {
     case "2":
       return OrderType.ASK;
     case "3":
-      return OrderType.EXIT_ASK;
-    case "4":
       return OrderType.EXIT_BID;
+    case "4":
+      return OrderType.EXIT_ASK;
     default:
       return null;
     }
