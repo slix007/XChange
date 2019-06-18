@@ -248,7 +248,7 @@ public final class OkCoinAdapters {
     List<LimitOrder> limitOrders = new ArrayList<LimitOrder>(list.length);
     for (int i = 0; i < list.length; i++) {
       BigDecimal[] data = list[i];
-      limitOrders.add(adaptLimitOrder(type, data, currencyPair, null, timestamp));
+      limitOrders.add(adaptLimitOrder(type, data, currencyPair, null, timestamp != null ? timestamp : new Date()));
     }
     return limitOrders;
   }
