@@ -4,7 +4,7 @@ package org.knowm.xchange.okcoin;
  * Delivery dates for future date currencies
  */
 public enum FuturesContract {
-  ThisWeek("this_week"), NextWeek("next_week"), Month("month"), Quarter("quarter"), Swap("swap");
+  ThisWeek("this_week"), NextWeek("next_week"), Month("month"), Quarter("quarter"), BiQuarter("bi_quarter"), Swap("swap");
 
   private final String name;
 
