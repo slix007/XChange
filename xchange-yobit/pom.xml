@@ -3,12 +3,12 @@
   <parent>
     <groupId>org.knowm.xchange</groupId>
     <artifactId>xchange-parent</artifactId>
-    <version>4.2.2-bts-SNAPSHOT</version>
+    <version>4.2.3-bts</version>
   </parent>
   <artifactId>xchange-yobit</artifactId>
   <name>XChange YoBit</name>
   <description>YoBit.Net - Ethereum (ETH) Exchange</description>
-  
+
   <url>http://knowm.org/open-source/xchange/</url>
 	<inceptionYear>2012</inceptionYear>
 
@@ -16,7 +16,7 @@
 		<name>Knowm Inc.</name>
 		<url>http://knowm.org/open-source/xchange/</url>
 	</organization>
-  
+
   <dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
@@ -24,5 +24,5 @@
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
-  
+
 </project>

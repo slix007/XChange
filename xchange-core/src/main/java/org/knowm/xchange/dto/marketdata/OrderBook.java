@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order.OrderType;
 import org.knowm.xchange.dto.trade.LimitOrder;
@@ -19,6 +18,21 @@ public final class OrderBook {
    */
   private Date timeStamp;
 
+
+  /**
+   * the timestamp on receive
+   */
+  private Date receiveTimestamp;
+
+
+  public Date getReceiveTimestamp() {
+    return receiveTimestamp;
+  }
+
+  public void setReceiveTimestamp(Date receiveTimestamp) {
+    this.receiveTimestamp = receiveTimestamp;
+  }
+
   /**
    * the asks
    */
@@ -28,6 +42,22 @@ public final class OrderBook {
    * the bids
    */
   private final List<LimitOrder> bids;
+
+  /**
+   * Constructor
+   *
+   * @param timeStamp - the timestamp of the orderbook according to the exchange's server, null if not provided
+   * @param receiveTimestamp - the timestamp of the orderbook according to the exchange's server, null if not provided
+   * @param asks The ASK orders
+   * @param bids The BID orders
+   */
+  public OrderBook(Date timeStamp, Date receiveTimestamp, List<LimitOrder> asks, List<LimitOrder> bids) {
+
+    this.timeStamp = timeStamp;
+    this.receiveTimestamp = receiveTimestamp;
+    this.asks = asks;
+    this.bids = bids;
+  }
 
   /**
    * Constructor
