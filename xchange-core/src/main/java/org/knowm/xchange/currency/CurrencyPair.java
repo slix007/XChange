@@ -77,7 +77,7 @@ public class CurrencyPair implements Comparable<CurrencyPair> {
   public static final CurrencyPair ETH_NZD = new CurrencyPair(Currency.ETH, Currency.NZD);
 
   public static final CurrencyPair XAUR_BTC = new CurrencyPair(Currency.XAUR, Currency.BTC);
-  
+
   public static final CurrencyPair XDC_BTC = new CurrencyPair(Currency.XDC, Currency.BTC);
 
   public static final CurrencyPair XRP_BTC = new CurrencyPair(Currency.XRP, Currency.BTC);
@@ -173,6 +173,12 @@ public class CurrencyPair implements Comparable<CurrencyPair> {
   public static final CurrencyPair UTC_EUR = new CurrencyPair(Currency.UTC, Currency.EUR);
   public static final CurrencyPair UTC_BTC = new CurrencyPair(Currency.UTC, Currency.BTC);
   public static final CurrencyPair UTC_LTC = new CurrencyPair(Currency.UTC, Currency.LTC);
+
+  public static final CurrencyPair XRP_USD = new CurrencyPair(Currency.XRP, Currency.USD);
+  public static final CurrencyPair LINK_USD = new CurrencyPair(Currency.LINK, Currency.USD);
+  public static final CurrencyPair BCH_USD = new CurrencyPair(Currency.BCH, Currency.USD);
+  public static final CurrencyPair LINK_BTC = new CurrencyPair(Currency.LINK, Currency.BTC);
+  public static final CurrencyPair BCH_BTC = new CurrencyPair(Currency.BCH, Currency.BTC);
 
   public final Currency base;
   public final Currency counter;
